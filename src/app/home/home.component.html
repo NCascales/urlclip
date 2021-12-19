@@ -11,12 +11,30 @@
     <img class="logo" src="assets/ngx-rocket-logo.png" alt="angular logo" />
     <ion-card-content>
       <ion-card-title>
-        <span translate>Hello world !</span>
+        <span translate>Wellcome to URLclip</span>
       </ion-card-title>
-      <p>
-        <app-loader [isLoading]="isLoading"></app-loader>
-        <q [hidden]="isLoading">{{ quote }}</q>
-      </p>
+      <p>You can shortener your website url here</p>
+      <br /><br />
+      <div style="padding: 2%">
+        <ion-item>
+          <ion-label>Enter your URL</ion-label>
+          <ion-imput placeholder="www.google.com" type="test" [(ngModel)]="inputURL"></ion-imput>
+          <ion-button color="primary" (click)="showURL(inputURL)"><ion-icon name="cut-outline"></ion-icon></ion-button>
+        </ion-item>
+      </div>
+      <div [innerHtml]="newURL"></div>
     </ion-card-content>
   </ion-card>
 </ion-content>
+<ion-card *ngFor="let card of URLcards">
+  <ion-card-header>
+    <ion-title
+      >Link shorted: <a href="{{ card.short_url }}">{{ card.short_url }}</a></ion-title
+    >
+  </ion-card-header>
+  <ion-card-content>
+    <ion-item>
+      <b>Created at:</b>
+    </ion-item>
+  </ion-card-content>
+</ion-card>

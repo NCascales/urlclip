@@ -2,7 +2,7 @@ import { Type } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import { QuoteService } from './quote.service';
+import { QuoteService } from './shortener.service';
 
 describe('QuoteService', () => {
   let quoteService: QuoteService;
