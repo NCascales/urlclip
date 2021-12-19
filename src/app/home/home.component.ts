@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from '@env/environment';
 import { $ } from 'protractor';
 import { finalize } from 'rxjs/operators';
-
+import { TranslateService } from '@ngx-translate/core';
 import { ShortenerService } from './shortener.service';
 
-interface URLCard {
+interface URLCards {
   hostname: string;
   long_url: string;
   short_url: string;
-  created_At: number;
+  created_at: number;
 }
 @Component({
   selector: 'app-home',
@@ -20,9 +20,10 @@ export class HomeComponent implements OnInit {
   quote: string | undefined;
   isLoading = false;
   inputURL: any = '';
-  URLCard: any;
+  //URLCard: any;
+  URLCard: URLCards[] = [];
 
-  constructor(private shortenerService: ShortenerService) {}
+  constructor(private shortenerService: ShortenerService, private translateService: TranslateService) {}
 
   ngOnInit() {
     this.isLoading = true;
@@ -41,18 +42,13 @@ export class HomeComponent implements OnInit {
           )[3],
           long_url: result.url,
           short_url: environment.serverUrl + '/' + result.code,
-          //created_at:new Date(result.created_at).toUTCString()
           created_at: result.created_at,
         });
-        //this.toastSuccess();
         this.inputURL = '';
       });
     } finally {
       this.isLoading = false;
-      //this.toastFails();
     }
     console.log(url);
-    var newURL = '<ion-label color="primary">' + url + '</ion-label><br>';
-    //$("#resultURL").append(str);
   }
 }
